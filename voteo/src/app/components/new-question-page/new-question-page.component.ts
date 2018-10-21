@@ -35,6 +35,9 @@ export class NewQuestionPageComponent implements OnChanges, AfterViewInit {
 
   createQuestionForm: FormGroup;
   optionIndex = 0;
+  optionTypeArray = ['Text', 'Image', 'Date'];
+  selectedTypeArray = [];
+  uploadedFiles: any[] = [];
 
   constructor(private fb: FormBuilder, private _el: ElementRef) {
     this.initForm();
@@ -93,10 +96,19 @@ export class NewQuestionPageComponent implements OnChanges, AfterViewInit {
     this.optionIndex++;
 
     this.options.push(option);
+    this.selectedTypeArray = [...this.selectedTypeArray, 'Text'];
   }
 
   removeCurrentQuestion() {
     this.afterClickOnRemove.next();
+  }
+
+  onSelecetOptionType(event, index) {
+    this.selectedTypeArray[index] = event.target.value;
+  }
+
+  onBasicUpload(event) {
+    console.log(event)
   }
 
   get hasMoreQuestions() {

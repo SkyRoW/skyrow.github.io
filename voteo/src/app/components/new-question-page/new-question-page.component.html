@@ -23,8 +23,24 @@
         <div class="" *ngFor="let option of options.controls; let j=index"
              [formGroupName]="j">
           <div class="option">
+            <select (change)="onSelecetOptionType($event, j)">
+               <option *ngFor="let optionType of optionTypeArray">{{optionType}}</option>
+            </select>
             <span class="label">{{'pools.create.option' | translate}} {{j+1}}:</span>
-            <input class="question-name" formControlName="label">
+            <div *ngIf="selectedTypeArray[j] === 'Text'">
+              <input class="question-name" formControlName="label">
+            </div>
+            <div *ngIf="selectedTypeArray[j] === 'Image'">
+              <p-fileUpload mode="basic" name="demo[]" url="./upload.php" accept="image/*" maxFileSize="1000000" (onUpload)="onBasicUpload($event)"></p-fileUpload>
+            </div>
+            <div *ngIf="selectedTypeArray[j] === 'Date'">
+              <mat-form-field class="full-width">
+                <input matInput [matDatepicker]="startPicker" [placeholder]="'pools.settings.startDate' | translate"
+                       formControlName="startDate">
+                <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+                <mat-datepicker #startPicker></mat-datepicker>
+              </mat-form-field>
+            </div>
             <span class="remove" (click)="removeOption(j)">X</span>
           </div>
         </div>

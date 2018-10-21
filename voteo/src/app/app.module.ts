@@ -52,6 +52,7 @@ import { PollsResultPageComponent } from './pages/polls-result/polls-result.comp
 import { PollResultComponent } from './components/poll-result/poll-result.component';
 
 import { ChartModule } from 'primeng/chart';
+import { FileUploadModule } from 'primeng/fileupload';
 import { CreateQuestionComponent } from './components/create-question/create-question.component';
 import { ContactAddDialogComponent } from './components/contact-add-dialog/contact-add-dialog.component';
 import { PoolsService } from './shared/pools/pools.service';
@@ -98,6 +99,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   imports: [
     NgbModule.forRoot(),
     ChartModule,
+    FileUploadModule,
     MatSlideToggleModule,
     MatInputModule,
     MatNativeDateModule,
